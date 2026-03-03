@@ -4,7 +4,7 @@ A skill that creates, evaluates, and improves other agent skills.
 
 Synthesized from four sources:
 
-1. **[Anthropic Skill Creator](https://github.com/openclaw/openclaw/tree/main/skills)** — base framework, scaffold scripts, validation, packaging
+1. **[Anthropic Skill Creator](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md)** — base framework, scaffold scripts, validation, packaging
 2. **[The Complete Guide to Building Skills for Claude](https://claude.com/blog/complete-guide-to-building-skills-for-claude)** ([PDF](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf?hsLang=en)) — 32 pages of best practices, 5 architecture patterns (sequential workflow, iterative refinement, context-aware selection, domain intelligence, multi-MCP coordination), success metrics (90% triggering rate, 0 failed calls), three skill categories
 3. **[Superpowers / writing-skills](https://github.com/obra/superpowers/blob/main/skills/writing-skills/SKILL.md)** by [Jesse Vincent](https://github.com/obra/superpowers) — TDD approach to skills, the "description trap" discovery
 4. **[Skills Best Practices](https://github.com/mgechev/skills-best-practices)** by [Minko Gechev](https://blog.mgechev.com/2026/02/26/skill-eval/) (Angular team lead, Google) — three-stage LLM validation, eval methodology
