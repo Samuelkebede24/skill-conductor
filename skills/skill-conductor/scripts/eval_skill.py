@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["pyyaml>=6.0"]
+# ///
 """
 Skill Evaluator - Automated discovery and structure checks for skills.
 
@@ -20,28 +24,6 @@ from pathlib import Path
 
 import yaml
 
-CHECKS_PASSED = 0
-CHECKS_FAILED = 0
-CHECKS_WARNED = 0
-
-
-def ok(msg):
-    global CHECKS_PASSED
-    CHECKS_PASSED += 1
-    print(f"  ✅ {msg}")
-
-
-def fail(msg):
-    global CHECKS_FAILED
-    CHECKS_FAILED += 1
-    print(f"  ❌ {msg}")
-
-
-def warn(msg):
-    global CHECKS_WARNED
-    CHECKS_WARNED += 1
-    print(f"  ⚠️  {msg}")
-
 
 def count_words(text):
     return len(text.split())
@@ -53,6 +35,21 @@ def count_lines(text):
 
 def eval_skill(skill_path):
     skill_path = Path(skill_path).resolve()
+
+    # Local counters instead of globals — safe for repeated calls
+    counts = {"passed": 0, "failed": 0, "warned": 0}
+
+    def ok(msg):
+        counts["passed"] += 1
+        print(f"  ✅ {msg}")
+
+    def fail(msg):
+        counts["failed"] += 1
+        print(f"  ❌ {msg}")
+
+    def warn(msg):
+        counts["warned"] += 1
+        print(f"  ⚠️  {msg}")
 
     print(f"\n🔍 Evaluating: {skill_path.name}\n")
 
@@ -216,19 +213,19 @@ def eval_skill(skill_path):
 
     # --- Summary ---
     print(f"\n{'='*50}")
-    total = CHECKS_PASSED + CHECKS_FAILED + CHECKS_WARNED
-    score = round((CHECKS_PASSED / total) * 10) if total else 0
-    print(f"✅ {CHECKS_PASSED} passed | ❌ {CHECKS_FAILED} failed | ⚠️  {CHECKS_WARNED} warnings")
+    total = counts["passed"] + counts["failed"] + counts["warned"]
+    score = round((counts["passed"] / total) * 10) if total else 0
+    print(f"✅ {counts['passed']} passed | ❌ {counts['failed']} failed | ⚠️  {counts['warned']} warnings")
     print(f"Score: {score}/10")
 
-    if CHECKS_FAILED == 0 and CHECKS_WARNED == 0:
+    if counts["failed"] == 0 and counts["warned"] == 0:
         print("🏆 Skill is clean!")
-    elif CHECKS_FAILED == 0:
+    elif counts["failed"] == 0:
         print("👍 Skill is valid with minor suggestions")
     else:
         print("🔧 Fix failed checks before packaging")
 
-    return CHECKS_FAILED == 0
+    return counts["failed"] == 0
 
 
 if __name__ == "__main__":

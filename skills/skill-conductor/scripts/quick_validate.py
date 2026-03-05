@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["pyyaml>=6.0"]
+# ///
 """
 Quick validation script for skills - minimal version
 """
@@ -37,7 +41,7 @@ def validate_skill(skill_path):
     except yaml.YAMLError as e:
         return False, f"Invalid YAML in frontmatter: {e}"
 
-    allowed_properties = {"name", "description", "license", "allowed-tools", "metadata"}
+    allowed_properties = {"name", "description", "license", "allowed-tools", "metadata", "compatibility"}
 
     unexpected_keys = set(frontmatter.keys()) - allowed_properties
     if unexpected_keys:
@@ -86,6 +90,17 @@ def validate_skill(skill_path):
             return (
                 False,
                 f"Description is too long ({len(description)} characters). Maximum is 1024 characters.",
+            )
+
+    # Validate compatibility field if present (optional)
+    compatibility = frontmatter.get("compatibility", "")
+    if compatibility:
+        if not isinstance(compatibility, str):
+            return False, f"Compatibility must be a string, got {type(compatibility).__name__}"
+        if len(compatibility) > 500:
+            return (
+                False,
+                f"Compatibility is too long ({len(compatibility)} characters). Maximum is 500 characters.",
             )
 
     return True, "Skill is valid!"
